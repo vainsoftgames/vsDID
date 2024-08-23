@@ -3,6 +3,7 @@
 	class vsDID {
 		private $api_host = 'https://api.d-id.com/';
 		public $timeout = 120;
+		public $api_key;
 
 		public function __construct(){
 		}
@@ -20,7 +21,7 @@
 			$headers = [];
 			if($payload && array_key_exists('file', $payload)) $headers[] = 'Content-Type: multipart/form-data';
             else $headers[] = 'Content-Type: application/json';
-            $headers[] = 'Authorization: Basic '. API_KEY;
+            $headers[] = 'Authorization: Basic '. $this->api_key;
 		
 			$ch = curl_init($this->api_host . $request);
             curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
